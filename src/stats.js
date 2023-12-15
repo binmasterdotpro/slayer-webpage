@@ -58,4 +58,4 @@ socket.on('drops', ({drops}) => {
             ${dropString}
         </h2>
   `
-}
+})
