@@ -21,6 +21,7 @@ function updateMessages({message, stringifiedMessage}) {
         console.log('Copied message to clipboard!')
     }
     if (checkBox.checked) messages.scrollTop = messages.scrollHeight
+    localStorage.setItem('messages', JSON.stringify(cachedMessages))
 }
 
 socket.on('message', (data) => {
