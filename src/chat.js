@@ -1,4 +1,5 @@
 const messages = document.getElementById('messages')
+const chat = document.getElementById('chat')
 const checkBox = document.getElementById('check-scroll-checkbox')
 const cachedMessages = localStorage.getItem('messages') ? JSON.parse(localStorage.getItem('messages')) : []
 const maxMessages = 50
@@ -20,7 +21,9 @@ function updateMessages({message, stringifiedMessage}) {
         await navigator.clipboard.writeText(stringifiedMessage)
         console.log('Copied message to clipboard!')
     }
-    if (checkBox.checked) messages.scrollTop = messages.scrollHeight
+    if (checkBox.checked) {
+        chat.scrollTop = chat.scrollHeight
+    }
     localStorage.setItem('messages', JSON.stringify(cachedMessages))
 }
 
