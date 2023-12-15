@@ -3,13 +3,12 @@ const macroStats = document.querySelector('#macroStats')
 const playerInfo = document.querySelector('#playerInfo')
 const drops = document.querySelector('#drops')
 
-socket.on('slayerInfo', ({scoreboard, questStart, state}) => {
+socket.on('slayerInfo', ({questStart, state}) => {
     slayerInfo.innerHTML = `
         <h1 class="text-xl font-semibold">
             Current Slayer Quest
         </h1>
         <h2>
-            ${scoreboard}<br/>
             Time Elapsed: ${msToTime(Math.floor(Date.now() - questStart))}<br/>
             Quest State: ${state}<br/>
         </h2>
@@ -47,8 +46,8 @@ socket.on('playerInfo', ({username, healthInfo, manaInfo, location}) => {
 
 socket.on('drops', ({drops}) => {
     let dropString = ''
-    for (const {dropName, quantity} of drops) {
-        dropString += `${dropName}: ${quantity}x<br/>`
+    for (const drop of Object.keys(drops)) {
+        dropString += `${drop}: ${drops[drop]}x<br/>`
     }
     drops.innerHTML = `
         <h1 class="text-xl font-semibold">
