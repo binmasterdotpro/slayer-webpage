@@ -44,10 +44,10 @@ socket.on('playerInfo', ({username, healthInfo, manaInfo, location}) => {
   `
 })
 
-socket.on('drops', ({drops}) => {
+socket.on('drops', ({rareDrops}) => {
     let dropString = ''
-    for (const drop of Object.keys(drops)) {
-        dropString += `${drop}: ${drops[drop]}x<br/>`
+    for (const drop of Object.keys(rareDrops)) {
+        dropString += `${drop}: ${rareDrops[drop]}x<br/>`
     }
     drops.innerHTML = `
         <h1 class="text-xl font-semibold">
