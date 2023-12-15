@@ -28,6 +28,6 @@ socket.on('message', (data) => {
     if (cachedMessages.length > maxMessages) {
         cachedMessages.shift()
     }
-    updateMessages(data)
     cachedMessages.push(data)
+    updateMessages(data)
 })
