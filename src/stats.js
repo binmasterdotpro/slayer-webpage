@@ -2,6 +2,17 @@ const slayerInfo = document.querySelector('#slayerInfo')
 const macroStats = document.querySelector('#macroStats')
 const playerInfo = document.querySelector('#playerInfo')
 const drops = document.querySelector('#drops')
+const canvas = document.querySelector('#windowCanvas')
+const windowSlotsCoords = getWindowSlotsCoords()
+let assets
+fetch('./assets.json').then(res => {
+    res.json().then(e => {
+        assets = e
+        console.log(assets)
+    })
+
+})
+
 
 socket.on('slayerInfo', ({questStart, state}) => {
     slayerInfo.innerHTML = `
@@ -57,4 +68,9 @@ socket.on('drops', ({rareDrops}) => {
             ${dropString}
         </h2>
   `
+})
+
+socket.on('inventory', ({windowUpdate}) => {
+    let window = JSON.parse(windowUpdate)
+    update(window, canvas, windowSlotsCoords, assets)
 })
